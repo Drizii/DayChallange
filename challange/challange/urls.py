@@ -21,5 +21,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', SongListView.as_view(template_name="main.html")),
     path('search/', SongSearchView.as_view(), name='search_results')
-
 ]
