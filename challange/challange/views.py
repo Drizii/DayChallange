@@ -19,19 +19,7 @@ def search_song_view(request):
             Q(title__icontains=query) | Q(artist__icontains=query)
         )
     context = {
-        "object_list": qs,
+        "song_list": qs,
     }
-    return render(request, context)
-
-''' wyjebać, jak to wyżej zacznie działac xd
-class SongSearchView(ListView):
-    model = Song
-    template_name = 'search_results.html'
-
-    def get_queryset(self):
-        query = self.request.GET.get('q', None)
-        return Song.objects.filter(
-            Q(title__icontains=query) | Q(artist__icontains=query)
-        )
-            return object_list
-'''
+    template_name = 'main.html'
+    return render(request, template_name, context)
