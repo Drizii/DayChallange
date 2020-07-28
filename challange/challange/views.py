@@ -1,17 +1,14 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from .models import Song
-from django.views.generic import ListView
-
 from django.db.models import Q
 
 
-class SongListView(ListView):
-    model = Song
-    template_name = 'main.html'
-    context_object_name = 'song_list'
-
-
 def search_song_view(request):
+    song_list = Song.objects.all()
+    paginator = Paginator(song_list, 1)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     query = request.GET.get("q", None)
     qs = Song.objects.all()
     if query is not None:
@@ -20,6 +17,16 @@ def search_song_view(request):
         )
     context = {
         "song_list": qs,
+        'page_obj': page_obj,
     }
     template_name = 'main.html'
     return render(request, template_name, context)
+
+'''
+def listing(request):
+    song_list = Song.objects.all()
+    paginator = Paginator(song_list, 2)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'main.html', {'page_obj': page_obj})
+'''
