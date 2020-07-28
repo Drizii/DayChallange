@@ -10,19 +10,20 @@ class SongListView(ListView):
     template_name = 'main.html'
     context_object_name = 'song_list'
 
-    def search_song_view(self, request):
-        query = request.GET.get("q", None)
-        qs = Song.objects.all()
-        if query is not None:
-            qs = qs.filter(
-                Q(title__icontains=query) | Q(artist__icontains=query)
-            )
-        context = {
-            "object_list": qs,
-        }
-        return render(request, context)
 
-'''
+def search_song_view(request):
+    query = request.GET.get("q", None)
+    qs = Song.objects.all()
+    if query is not None:
+        qs = qs.filter(
+            Q(title__icontains=query) | Q(artist__icontains=query)
+        )
+    context = {
+        "object_list": qs,
+    }
+    return render(request, context)
+
+''' wyjebać, jak to wyżej zacznie działac xd
 class SongSearchView(ListView):
     model = Song
     template_name = 'search_results.html'
@@ -32,6 +33,5 @@ class SongSearchView(ListView):
         return Song.objects.filter(
             Q(title__icontains=query) | Q(artist__icontains=query)
         )
-        if query is None:
             return object_list
 '''
