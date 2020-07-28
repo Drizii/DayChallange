@@ -30,7 +30,7 @@ class Day(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name="Która edycja", default=None, blank=True)
     day = models.DateField(default=date.today)
     condition = models.CharField(verbose_name="Warunek", max_length=64, default="wybierz")
-    song = models.ForeignKey('Song', on_delete=models.CASCADE, default=None, null=True)
+    song = models.ManyToManyField(Song, default=None, null=True)
 
     def __str__(self):
         return self.day
