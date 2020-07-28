@@ -39,7 +39,7 @@
         <td>{{ song.artist }}</td>
         <td>{{ song.title }}</td>
         <td>{{ song.link }}</td>
-        <td>{% for person in song.person.all %} {{ person.name }} {% endfor %}</td>
+        <td>{{ song.person.name }}</td>
     </tr>
 {% endfor %}
   </tbody>
