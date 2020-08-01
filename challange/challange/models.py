@@ -33,8 +33,4 @@ class Day(models.Model):
     song = models.ManyToManyField(Song, default=None, null=True)
 
     def __str__(self):
-        return self.day
-
-
-
-
+        return str(self.day)
