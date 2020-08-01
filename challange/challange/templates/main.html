@@ -36,7 +36,7 @@
   <h3> 3 edycja challenge muzycznego  </h3>
 {% for song in page_obj %}
     <tr>
-        <td>{{ song.day_set }}</td>
+        <td>{{ song.day_set.all.0 }}</td>
         <td>{{ song.artist }}</td>
         <td>{{ song.title }}</td>
         <td><a href="{{ song.link }}">{{ song.link }}</a></td>
