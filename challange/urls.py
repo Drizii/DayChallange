@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic.base import TemplateView
 from .views import search_song_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', search_song_view, name='search_results')
+    path('', TemplateView.as_view(template_name="index.html"), name='index'),
+    path('search/', search_song_view, name='search_results'),
 ]

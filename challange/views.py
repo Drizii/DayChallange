@@ -7,12 +7,12 @@ from django.db.models import Q
 
 def search_song_view(request):
     query = request.GET.get("q", None)
-    qs = Song.objects.all().order_by('day')
+    qs = Song.objects.all()
     if query is not None:
         qs = qs.filter(
             Q(title__icontains=query) | Q(artist__icontains=query)
         )
-    paginator = Paginator(qs.order_by('day'), 30)
+    paginator = Paginator(qs.order_by('-day__day'), 30)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
