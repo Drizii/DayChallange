@@ -25,7 +25,7 @@ SECRET_KEY = 'bjud_-xoy&4##v7_q04u_t-7g&o@(adf9=vy3g65jdr9z%^=a0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["wyzwanie-muzyczne.pl"]
+ALLOWED_HOSTS = ["wyzwanie-muzyczne.pl", "127.0.0.1"]
 
 
 # Application definition

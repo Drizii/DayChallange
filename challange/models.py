@@ -18,11 +18,11 @@ class Person(models.Model):
 
 class Day(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name="Która edycja", default=None, blank=True)
-    day = models.DateField(default=date.today)
+    date = models.DateField(default=date.today)
     condition = models.CharField(verbose_name="Warunek", max_length=64, default="wybierz")
 
     def __str__(self):
-        return str(self.day)
+        return str(self.date)
 
 
 class Song(models.Model):

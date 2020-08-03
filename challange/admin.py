@@ -10,7 +10,7 @@ class SongTabularInLine(admin.TabularInline):
 
 @admin.register(Day)
 class DayAdmin(admin.ModelAdmin):
-    inlines = [SongTabularInLine, ]
+    inlines = [SongTabularInLine]
 
     class Meta:
         model = Day

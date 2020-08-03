@@ -1,6 +1,6 @@
 .idea/
 venv/
-challange/db.sqlite3/
+db.sqlite3
 local_settings.py
 __pycache__
 tmp
