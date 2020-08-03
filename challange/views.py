@@ -11,7 +11,7 @@ def search_song_view(request):
         qs = qs.filter(
             Q(title__icontains=query) | Q(artist__icontains=query)
         )
-    paginator = Paginator(qs.order_by('-day__date'), 30)
+    paginator = Paginator(qs.order_by('-day__date', 'id'), 30)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {

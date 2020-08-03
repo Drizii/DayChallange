@@ -33,4 +33,4 @@ class Song(models.Model):
     day = models.ForeignKey(Day, verbose_name="Dzień", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.artist + ' - ' + self.title
+        return f"{self.artist} - {self.title}"
