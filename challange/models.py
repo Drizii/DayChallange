@@ -22,7 +22,7 @@ class Day(models.Model):
     condition = models.CharField(verbose_name="Warunek", max_length=64, default="wybierz")
 
     def __str__(self):
-        return str(self.date)
+        return f"{self.date} - {self.condition}"
 
 
 class Song(models.Model):
