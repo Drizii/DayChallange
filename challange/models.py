@@ -19,7 +19,7 @@ class Person(models.Model):
 class Day(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name="Która edycja", default=None, blank=True)
     date = models.DateField(default=date.today)
-    condition = models.CharField(verbose_name="Warunek", max_length=64, default="wybierz")
+    condition = models.CharField(verbose_name="Warunek", max_length=128, default="wybierz")
 
     def __str__(self):
         return f"{self.date} - {self.condition}"

@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from .models import Song
+from django.views.generic import ListView, View
+from .models import Song, Day
 from django.db.models import Q
 
 
@@ -19,3 +20,10 @@ def search_song_view(request):
     }
     template_name = 'main.html'
     return render(request, template_name, context)
+
+
+class DayListView(ListView):
+    model = Day
+    template_name = "day.html"
+    context_object_name = "day"
+
