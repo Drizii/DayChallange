@@ -12,13 +12,26 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <style>
+        .search-bar{
+            height: 40px;
+            margin: 10px;
+            width: 80%;
+            white-space: nowrap;
+        }
+        #back-button{
+            margin: 0 auto;
+        }
+    </style>
     <title>Song challenge</title>
 </head>
 <body>
 <div class="container">
     <div class="search-bar">
         <form method="get" action="{% url 'search_results' %}">
-            <input type="text" class="form-control" name="q" placeholder="Search" >
+            <input type="text" class="search-bar" name="q" placeholder="Wyszukaj..." >
+            <button type="submit" class="btn btn-primary">Szukaj</button>
+            <a id="back-button" class="btn btn-primary" href="/"">Powrót</a>
         </form>
     </div>
 
@@ -46,6 +59,7 @@
   </tbody>
 </table>
 </div>
+
 <div class="container">
 <div class="pagination">
     <span class="step-links">
