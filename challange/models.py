@@ -12,6 +12,9 @@ class Event(models.Model):
 class Person(models.Model):
     name = models.CharField(verbose_name="Imie i nazwisko", max_length=128)
 
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
 
