@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,6 +27,7 @@
     <title>Song challenge</title>
 </head>
 <body>
+{% block body %}
 <div class="container">
     <div class="search-bar">
         <form method="get" action="{% url 'search_results' %}">
@@ -79,5 +81,6 @@
     </span>
 </div>
 </div>
+{% endblock %}
 </body>
 </html>

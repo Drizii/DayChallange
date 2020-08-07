@@ -1,19 +1,26 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %} {% endblock %}
+{% block body %}
+<style>
+    table {
+        width: 100%;
+        height: 100%;
+        background: grey;
+        text-align: center;
+    }
+    .main-head{
+        background: grey;
+        box-sizing: border-box;
+        border-collapse: separate;
+    }
+    .col-12 xd
+        background: grey;
+</style>
+
 <div class="container">
-    <p></p>
 <table class="table table-bordered">
     {% for day in object_list %}
-    <thead>
+    <thead class="main-head">
         <td>{{ day.date }} - {{ day.condition }}</td>
     </thead>
     <thead>
@@ -32,21 +39,27 @@
     {% endfor %}
     {% endfor %}
 </table>
+</div>
+
+
+    <h1>koniec tabeli</h1>
     <h1>koniec tabeli</h1>
 
-</div>
+
 <div class="container">
     {% for day in object_list %}
     <div class="row">
-        <div class="col">{{ day.date }} - {{ day.condition }}</div>
-        <div class="w-100"></div>
+        <div class="col-12 xd">{{ day.date }} - {{ day.condition }}</div>
+
         {% for obj in day.song_set.all %}
-        <div class="col">{{ obj.artist }}</div>
-        <div class="col">{{ obj.title }}</div>
+        <div class="col-3">{{ obj.artist }}</div>
+        <div class="col-3">{{ obj.title }}</div>
+        <div class="col-3">{{ obj.link }}</div>
+        <div class="col-3">{{ obj.person }}</div>
         {% endfor %}
     </div>
     {% endfor %}
 </div>
 
-</body>
-</html>
+
+{% endblock %}

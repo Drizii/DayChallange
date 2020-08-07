@@ -1,8 +1,7 @@
-<head>
-	<meta charset="utf8">
-	<meta title="Wyzwanie muzyczne">
-</head>
+{% extends 'base.html' %}
+{% block title %}Wyzwanie muzyczne{% endblock %}
 <body>
+{% block body %}
 <div>
 <h1>100 Muzycznych Dni - wyzwanie</h1>
 
@@ -157,6 +156,9 @@
         background-color: darkgray;
         text-decoration: underline;
     }
+    .collapse navbar-collapse{
+        margin: 0;
+    }
 </style>
 <script>
     date = new Date();
@@ -177,4 +179,5 @@
         }
     }
 </script>
+{% endblock %}
 </body>
