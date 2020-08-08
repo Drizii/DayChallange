@@ -1,65 +1,109 @@
 {% extends 'base.html' %}
 {% block title %} {% endblock %}
 {% block body %}
+
 <style>
+    body{
+        background: url("/static/backgr.jpg");
+        background-size: cover;
+    }
     table {
+        margin-top:50px;
         width: 100%;
         height: 100%;
-        background: grey;
         text-align: center;
+        border-collapse:separate;
+        border-spacing: 0 0px;
+        box-shadow: 0px 0px 5px 1px black;
     }
     .main-head{
-        background: grey;
-        box-sizing: border-box;
+        background: #808080;
         border-collapse: separate;
     }
-    .col-12 xd
-        background: grey;
+    tr.row_day>td, h4{
+        padding: 15px;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #f5f5f5;
+    }
+    tr.row_atr>td{
+        text-transform: uppercase;
+        font-weight: bold;
+        background:#F0F8FF;
+    }
+    tr.row_obj>td{
+        background:#F8F8FF;
+    }
+
 </style>
 
 <div class="container">
-<table class="table table-bordered">
+<table class="table table-bordered" >
     {% for day in object_list %}
     <thead class="main-head">
-        <td>{{ day.date }} - {{ day.condition }}</td>
+        <tr class="row_day" >
+            <td colspan="4"><h4>{{ day.date }} - {{ day.condition }}</h4></td>
+        </tr>
     </thead>
     <thead>
-        <td>Autor</td>
-        <td>Tytuł</td>
-        <td>Link</td>
-        <td>Proponujący</td>
+        <tr class="row_atr">
+            <td>Autor</td>
+            <td>Tytuł</td>
+            <td>Link</td>
+            <td>Proponujący</td>
+        </tr>
     </thead>
-    {% for obj in day.song_set.all %}
     <tbody>
-        <td>{{ obj.artist }}</td>
-        <td>{{ obj.title }}</td>
-        <td>{{ obj.link }}</td>
-        <td>{{ obj.person }}</td>
+        {% for obj in day.song_set.all %}
+        <tr class="row_obj">
+            <td>{{ obj.artist }}</td>
+            <td>{{ obj.title }}</td>
+            <td>{{ obj.link }}</td>
+            <td>{{ obj.person }}</td>
+        </tr>
+        {% endfor %}
     </tbody>
     {% endfor %}
-    {% endfor %}
 </table>
-</div>
-
-
-    <h1>koniec tabeli</h1>
-    <h1>koniec tabeli</h1>
-
-
+<!--Paginator-->
 <div class="container">
-    {% for day in object_list %}
-    <div class="row">
-        <div class="col-12 xd">{{ day.date }} - {{ day.condition }}</div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
 
-        {% for obj in day.song_set.all %}
-        <div class="col-3">{{ obj.artist }}</div>
-        <div class="col-3">{{ obj.title }}</div>
-        <div class="col-3">{{ obj.link }}</div>
-        <div class="col-3">{{ obj.person }}</div>
-        {% endfor %}
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
     </div>
-    {% endfor %}
 </div>
+<!--/.Paginator-->
 
+<nav aria-label="Page navigation example">
+  <ul class="pagination pg-blue">
 
+    <li class="page-item disabled">
+      <a class="page-link" tabindex="-1">Previous</a>
+    </li>
+
+    <li class="page-item"><a class="page-link">1</a></li>
+    <li class="page-item active">
+      <a class="page-link">2 <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="page-item"><a class="page-link">3</a></li>
+
+    <li class="page-item">
+      <a class="page-link">Next</a>
+    </li>
+
+  </ul>
+</nav>
 {% endblock %}
