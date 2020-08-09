@@ -42,7 +42,7 @@
         {% for day in object_list %}
         <thead class="main-head">
             <tr class="row_day">
-                <td colspan="4"><h4>{{ day.date }} - {{ day.condition }}</h4></td>
+                <td colspan="4"><h4>{{ day.date|date:"(l) d.m.Y" }} - {{ day.condition }}</h4></td>
             </tr>
         </thead>
         <thead>

@@ -22,20 +22,25 @@
             #back-button {
                 margin: 0 auto;
             }
+
         </style>
         <title>Song challenge</title>
     </head>
     <body>
         {% block body %}
         <div class="container">
-            <div class="search-bar">
-                <form method="get" action="{% url 'search_results' %}">
-                    <input type="text" class="search-bar" name="q" placeholder="Wyszukaj..." />
-                    <button type="submit" class="btn btn-primary">Szukaj</button>
-                    <a id="back-button" class="btn btn-primary" href="/">Powrót</a>
-                </form>
-            </div>
-
+            <!-- Nowy search bar2 -->
+                <div class="search-bar">
+                    <form method="get" action="{% url 'search_results' %}">
+                        <div class="input-group md-form form-sm form-2 pl-0">
+                            <input class="form-control my-0 py-1 red-border" type="text" name="q" placeholder="Wyszukaj..." aria-label="Wyszukaj...">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Szukaj</button>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+            <!--/. Nowy search bar2 -->
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -60,7 +65,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
+
         <!--Paginator-->
         <nav aria-label="Page navigation example">
             <ul class="pagination pg-blue justify-content-center">
