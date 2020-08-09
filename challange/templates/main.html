@@ -19,17 +19,13 @@
                 width: 80%;
                 white-space: nowrap;
             }
-            #back-button {
-                margin: 0 auto;
-            }
-
         </style>
-        <title>Song challenge</title>
+        {% block title %} Wyszukiwarka {% endblock %}
     </head>
     <body>
         {% block body %}
         <div class="container">
-            <!-- Nowy search bar2 -->
+            <!-- search bar -->
                 <div class="search-bar">
                     <form method="get" action="{% url 'search_results' %}">
                         <div class="input-group md-form form-sm form-2 pl-0">
@@ -40,23 +36,24 @@
                         </div>
                     </form>
                 </div>
-            <!--/. Nowy search bar2 -->
+            <!--/. search bar -->
+                <h3 style="text-align: center;">III EDYCJA WYZWANIA MUZYCZNEGO</h3>
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Data</th>
                         <th scope="col">Artysta</th>
-                        <th scope="col">Nazwa</th>
+                        <th scope="col">Tytuł</th>
                         <th scope="col">Link</th>
                         <th scope="col">Proponujący</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <h3>3 edycja challenge muzycznego</h3>
+
                     {% for song in page_obj %}
-                    <tr>
-                        <td>{{ song.day }}</td>
+                    <tr >
+                        <td>{{ song.day.date|date:"D, d.m.Y" }}</td>
                         <td>{{ song.artist }}</td>
                         <td>{{ song.title }}</td>
                         <td><a style="color: blue" href="{{ song.link }}">YouTube <img width="51" height="28" src="/static/btn_youtube.png"></a></td>
