@@ -58,7 +58,7 @@
             <tr class="row_obj">
                 <td>{{ obj.artist }}</td>
                 <td>{{ obj.title }}</td>
-                <td>{{ obj.link }}</td>
+                <td><a style="color: blue" href="{{obj.link}}">YouTube <img width="51" height="28" src="/static/btn_youtube.png"></a></td>
                 <td>{{ obj.person }}</td>
             </tr>
             {% endfor %}
