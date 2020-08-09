@@ -12,7 +12,7 @@ def search_song_view(request):
         qs = qs.filter(
             Q(title__icontains=query) | Q(artist__icontains=query)
         )
-    paginator = Paginator(qs.order_by('-day__date', 'id'), 30)
+    paginator = Paginator(qs.order_by('-day__date', 'id'), 25)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -26,5 +26,6 @@ class DayListView(ListView):
     model = Day
     template_name = "day.html"
     context_object_name = "day"
-    paginate_by = 3
+    paginate_by = 5
+
 

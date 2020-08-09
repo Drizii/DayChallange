@@ -1,109 +1,102 @@
 {% extends 'base.html' %}
-{% block title %} {% endblock %}
+{% block title %}Dni wyzwania {% endblock %}
 {% block body %}
 
 <style>
-    body{
+    body {
         background: url("/static/backgr.jpg");
         background-size: cover;
     }
     table {
-        margin-top:50px;
+        margin-top: 50px;
         width: 100%;
         height: 100%;
         text-align: center;
-        border-collapse:separate;
+        border-collapse: separate;
         border-spacing: 0 0px;
         box-shadow: 0px 0px 5px 1px black;
     }
-    .main-head{
+    .main-head {
         background: #808080;
         border-collapse: separate;
     }
-    tr.row_day>td, h4{
+    tr.row_day > td,
+    h4 {
         padding: 15px;
         text-transform: uppercase;
         font-weight: bold;
         color: #f5f5f5;
     }
-    tr.row_atr>td{
+    tr.row_atr > td {
         text-transform: uppercase;
         font-weight: bold;
-        background:#F0F8FF;
+        background: #f0f8ff;
     }
-    tr.row_obj>td{
-        background:#F8F8FF;
+    tr.row_obj > td {
+        background: #f8f8ff;
     }
-
 </style>
 
 <div class="container">
-<table class="table table-bordered" >
-    {% for day in object_list %}
-    <thead class="main-head">
-        <tr class="row_day" >
-            <td colspan="4"><h4>{{ day.date }} - {{ day.condition }}</h4></td>
-        </tr>
-    </thead>
-    <thead>
-        <tr class="row_atr">
-            <td>Autor</td>
-            <td>Tytuł</td>
-            <td>Link</td>
-            <td>Proponujący</td>
-        </tr>
-    </thead>
-    <tbody>
-        {% for obj in day.song_set.all %}
-        <tr class="row_obj">
-            <td>{{ obj.artist }}</td>
-            <td>{{ obj.title }}</td>
-            <td>{{ obj.link }}</td>
-            <td>{{ obj.person }}</td>
-        </tr>
+    <table class="table table-bordered">
+        {% for day in object_list %}
+        <thead class="main-head">
+            <tr class="row_day">
+                <td colspan="4"><h4>{{ day.date }} - {{ day.condition }}</h4></td>
+            </tr>
+        </thead>
+        <thead>
+            <tr class="row_atr">
+                <td>Autor</td>
+                <td>Tytuł</td>
+                <td>Link</td>
+                <td>Proponujący</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in day.song_set.all %}
+            <tr class="row_obj">
+                <td>{{ obj.artist }}</td>
+                <td>{{ obj.title }}</td>
+                <td>{{ obj.link }}</td>
+                <td>{{ obj.person }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
         {% endfor %}
-    </tbody>
-    {% endfor %}
-</table>
-<!--Paginator-->
-<div class="container">
-    <div class="pagination">
-        <span class="step-links">
+    </table>
+    <!--Paginator-->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination pg-blue justify-content-center">
             {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            <li class="page-item">
+                <a class="page-link" href="?page=1">&laquo; first</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
             {% endif %}
-
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">{{page_obj.previous_page_number}}</a></li>
+            {% endif %}
+            <li class="page-item active">
+                <a class="page-link">{{ page_obj.number }} <span class="sr-only">(current)</span></a>
+            </li>
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">{{page_obj.next_page_number}}</a></li>
             {% endif %}
-        </span>
-    </div>
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <!--/.Paginator-->
+    {% endblock %}
 </div>
-<!--/.Paginator-->
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination pg-blue">
-
-    <li class="page-item disabled">
-      <a class="page-link" tabindex="-1">Previous</a>
-    </li>
-
-    <li class="page-item"><a class="page-link">1</a></li>
-    <li class="page-item active">
-      <a class="page-link">2 <span class="sr-only">(current)</span></a>
-    </li>
-    <li class="page-item"><a class="page-link">3</a></li>
-
-    <li class="page-item">
-      <a class="page-link">Next</a>
-    </li>
-
-  </ul>
-</nav>
-{% endblock %}

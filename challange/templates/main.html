@@ -1,87 +1,99 @@
 {% extends 'base.html' %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <style>
-        .search-bar{
-            height: 40px;
-            margin: 10px;
-            width: 80%;
-            white-space: nowrap;
-        }
-        #back-button{
-            margin: 0 auto;
-        }
-    </style>
-    <title>Song challenge</title>
-</head>
-<body>
-{% block body %}
-<div class="container">
-    <div class="search-bar">
-        <form method="get" action="{% url 'search_results' %}">
-            <input type="text" class="search-bar" name="q" placeholder="Wyszukaj..." >
-            <button type="submit" class="btn btn-primary">Szukaj</button>
-            <a id="back-button" class="btn btn-primary" href="/"">Powrót</a>
-        </form>
-    </div>
+        <style>
+            .search-bar {
+                height: 40px;
+                margin: 10px;
+                width: 80%;
+                white-space: nowrap;
+            }
+            #back-button {
+                margin: 0 auto;
+            }
+        </style>
+        <title>Song challenge</title>
+    </head>
+    <body>
+        {% block body %}
+        <div class="container">
+            <div class="search-bar">
+                <form method="get" action="{% url 'search_results' %}">
+                    <input type="text" class="search-bar" name="q" placeholder="Wyszukaj..." />
+                    <button type="submit" class="btn btn-primary">Szukaj</button>
+                    <a id="back-button" class="btn btn-primary" href="/">Powrót</a>
+                </form>
+            </div>
 
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Artysta</th>
+                        <th scope="col">Nazwa</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Proponujący</th>
+                    </tr>
+                </thead>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-        <th scope="col">Data</th>
-        <th scope="col">Artysta</th>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Link</th>
-        <th scope="col">Proponujący</th>
-    </tr>
-  <tbody>
-  <h3> 3 edycja challenge muzycznego  </h3>
-{% for song in page_obj %}
-    <tr>
-        <td>{{ song.day }}</td>
-        <td>{{ song.artist }}</td>
-        <td>{{ song.title }}</td>
-        <td><a href="{{ song.link }}">{{ song.link }}</a></td>
-        <td>{{ song.person.name }}</td>
-    </tr>
-{% endfor %}
-  </tbody>
-</table>
-</div>
-<!--Paginator-->
-<div class="container">
-    <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
+                <tbody>
+                    <h3>3 edycja challenge muzycznego</h3>
+                    {% for song in page_obj %}
+                    <tr>
+                        <td>{{ song.day }}</td>
+                        <td>{{ song.artist }}</td>
+                        <td>{{ song.title }}</td>
+                        <td><a href="{{ song.link }}">{{ song.link }}</a></td>
+                        <td>{{ song.person.name }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!--Paginator-->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination pg-blue justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">&laquo; first</a>
+                </li>
 
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                </li>
+                {% endif %}
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">{{page_obj.previous_page_number}}</a></li>
+                {% endif %}
+                <li class="page-item active">
+                    <a class="page-link">{{ page_obj.number }} <span class="sr-only">(current)</span></a>
+                </li>
+                {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">{{page_obj.next_page_number}}</a></li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
 
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
-    </div>
-</div>
-<!--/.Paginator-->
-{% endblock %}
-</body>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!--/.Paginator-->
+        {% endblock %}
+    </body>
 </html>
