@@ -27,5 +27,6 @@ class DayListView(ListView):
     template_name = "day.html"
     context_object_name = "day"
     paginate_by = 5
+    ordering = ['-date', 'id']
 
 

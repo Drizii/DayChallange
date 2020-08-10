@@ -16,35 +16,43 @@
             }
         </style>
     </head>
-    <!--Navbar-->
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-        <div class="container">
-            <!-- Navbar brand -->
-            <a class="navbar-brand" href="/">Wyzwanie Muzyczne</a>
-            <!-- Collapsible content -->
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav mr-auto"></ul>
-                <!-- Links -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">
-                            Strona główna
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/search">Wyszukiwarka</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/days">Dni</a>
-                    </li>
-                </ul>
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <div class="container">
+                <!-- Navbar brand -->
+                <a class="navbar-brand" href="/">Wyzwanie Muzyczne</a>
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto"></ul>
+                    <!-- Links -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Strona główna</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/search/">Wyszukiwarka</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/days/">Dni</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-            <!--/.Navbar-->
-            <body>
-                {% block body %} {% endblock %}
-            </body>
-            {% block content %} {% endblock %}
+        </nav>
+        <!--/.Navbar-->
+        {% block body %} {% endblock %}
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            $(function () {
+                $("a").each(function () {
+                    if ($(this).prop("href") == window.location.href) {
+                        $(this).addClass("active");
+                        $(this).parents("li").addClass("active");
+                    }
+                });
+            });
+        </script>
+    </body>
+    {% block content %} {% endblock %}
 </html>
