@@ -44,17 +44,8 @@
         <!--/.Navbar-->
         {% block body %} {% endblock %}
         <!-- Script to backlight a current path -->
-        <script  src="{% static 'script.js' %}" ></script>
-        <script>
-            $(function () {
-                $("a").each(function () {
-                    if ($(this).prop("href") == window.location.href) {
-                        $(this).addClass("active");
-                        $(this).parents("li").addClass("active");
-                    }
-                });
-            });
-        </script>
+        <script  src="{% static 'js/jquery-2.1.4.min.js' %}" ></script>
+        <script  src="{% static 'js/script.js' %}" ></script>
         <!--/. Script to backlight a current path -->
     </body>
     {% block content %} {% endblock %}
