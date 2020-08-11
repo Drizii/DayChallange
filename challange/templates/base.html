@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pl">
     <head>
@@ -42,7 +43,8 @@
         </nav>
         <!--/.Navbar-->
         {% block body %} {% endblock %}
-        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <!-- Script to backlight a current path -->
+        <script  src="{% static 'script.js' %}" ></script>
         <script>
             $(function () {
                 $("a").each(function () {
@@ -53,6 +55,7 @@
                 });
             });
         </script>
+        <!--/. Script to backlight a current path -->
     </body>
     {% block content %} {% endblock %}
 </html>
