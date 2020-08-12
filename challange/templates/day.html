@@ -3,10 +3,6 @@
 {% block body %}
 
 <style>
-    body {
-        background: url("/static/backgr.jpg");
-        background-size: cover;
-    }
     table {
         margin-top: 50px;
         width: 100%;
@@ -34,6 +30,10 @@
     }
     tr.row_obj > td {
         background: #f8f8ff;
+    }
+    .pagination{
+        margin-top: 50px;
+    	margin-bottom: 60px;
     }
 </style>
 
@@ -98,5 +98,6 @@
         </ul>
     </nav>
     <!--/.Paginator-->
-    {% endblock %}
+
 </div>
+    {% endblock %}

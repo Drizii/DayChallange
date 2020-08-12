@@ -12,41 +12,81 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/css/mdb.min.css" rel="stylesheet" />
         <style>
             body {
-                background: url("/static/backgr.jpg");
-                background-size: cover;
+                background-color: lightgrey;
+                position: relative;
+                display: block;
+            }
+            body::after {
+                content: "";
+                background: url("/static/pattern-backgr2.jpg");
+                background-repeat: repeat;
+                opacity: 0.12;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;
+            }
+            #page-container {
+                position: relative;
+                min-height: 100vh;
+            }
+
+            #content-wrap {
+                padding-bottom: 2.5rem;    /* Footer height */
+            }
+
+            #footer {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                padding:5px 0;
             }
         </style>
     </head>
     <body>
-        <!--Navbar-->
-        <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <div class="container">
-                <!-- Navbar brand -->
-                <a class="navbar-brand" href="/">Wyzwanie Muzyczne</a>
-                <!-- Collapsible content -->
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav mr-auto"></ul>
-                    <!-- Links -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Strona główna</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/search/">Wyszukiwarka</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/days/">Dni</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!--/.Navbar-->
-        {% block body %} {% endblock %}
-        <!-- Script to backlight a current path -->
-        <script  src="{% static 'js/jquery-2.1.4.min.js' %}" ></script>
-        <script  src="{% static 'js/script.js' %}" ></script>
-        <!--/. Script to backlight a current path -->
+        <div id="page-container">
+            <div id="content-wrap">
+                <!--Navbar-->
+                <nav class="navbar navbar-expand navbar-dark bg-dark">
+                    <div class="container">
+                        <!-- Navbar brand -->
+                        <a class="navbar-brand" href="/">Wyzwanie Muzyczne</a>
+                        <!-- Collapsible content -->
+                        <div class="collapse navbar-collapse">
+                            <ul class="navbar-nav mr-auto"></ul>
+                            <!-- Links -->
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/">Strona główna</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/search/">Wyszukiwarka</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/days/">Dni</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!--/.Navbar-->
+                {% block body %} {% endblock %}
+
+                <!-- Footer -->
+                <footer class="page-footer font-small bg-dark" id="footer">
+                    <!-- Copyright -->
+                    <div class="footer-copyright text-center py-3">
+                        Made by Wojciech Kowalewicz pod przewodnictwem <a href="https://yetem.pl/">yetem.pl</a>
+
+                    </div>
+                    <!-- Copyright -->
+                </footer>
+                <!--/. Footer -->
+                <!-- Script to backlight a current path -->
+                <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+                <script src="{% static 'js/script.js' %}"></script>
+                <!--/. Script to backlight a current path -->
     </body>
-    {% block content %} {% endblock %}
 </html>

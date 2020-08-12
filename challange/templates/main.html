@@ -12,56 +12,59 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <style>
-            .search-bar {
-                height: 40px;
-                margin: 10px;
-                width: 80%;
-                white-space: nowrap;
-            }
-        </style>
         {% block title %} Wyszukiwarka {% endblock %}
     </head>
-    <body>
-        {% block body %}
-        <div class="container">
-            <!-- search bar -->
-                <div class="search-bar">
-                    <form method="get" action="{% url 'search_results' %}">
-                        <div class="input-group md-form form-sm form-2 pl-0">
-                            <input class="form-control my-0 py-1 red-border" type="text" name="q" placeholder="Wyszukaj..." aria-label="Wyszukaj...">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-primary">Szukaj</button>
-                                </div>
-                        </div>
-                    </form>
+    {% block body %}
+        <style>
+            #search-input{
+                background-color:#F8F8FF;
+                color:black;
+            }
+            table {
+                margin: auto;
+                text-align: center;
+                box-shadow: 0px 0px 5px 1px black;
+            }
+        </style>
+    <div class="container">
+        <!-- search bar -->
+        <div class="search-bar">
+            <form method="get" action="{% url 'search_results' %}">
+                <div class="input-group md-form form-sm form-2 pl-0 ">
+                    <input id="search-input" class="form-control my-0 py-1" type="text" name="q" placeholder="Wyszukaj..." />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Szukaj</button>
+                    </div>
                 </div>
-            <!--/. search bar -->
-                <h3 style="text-align: center;">III EDYCJA WYZWANIA MUZYCZNEGO</h3>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Data</th>
-                        <th scope="col">Artysta</th>
-                        <th scope="col">Tytuł</th>
-                        <th scope="col">Link</th>
-                        <th scope="col">Proponujący</th>
-                    </tr>
-                </thead>
+            </form>
+        </div>
+        <!--/. search bar -->
+        <h3 style="text-align: center;">III EDYCJA WYZWANIA MUZYCZNEGO</h3>
+        <table class="table table-striped">
+            <thead class="grey white-text">
+                <tr>
+                    <td scope="col">Data</td>
+                    <td scope="col">Artysta</td>
+                    <td scope="col">Tytuł</td>
+                    <td scope="col">Link</td>
+                    <td scope="col">Proponujący</td>
+                </tr>
+            </thead>
 
-                <tbody>
-
-                    {% for song in page_obj %}
-                    <tr >
-                        <td>{{ song.day.date|date:"D, d.m.Y" }}</td>
-                        <td>{{ song.artist }}</td>
-                        <td>{{ song.title }}</td>
-                        <td><a style="color: blue" href="{{ song.link }}">YouTube <img width="51" height="28" src="/static/btn_youtube.png"></a></td>
-                        <td>{{ song.person.name }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <tbody style="background-color: #f8f8ff;">
+                {% for song in page_obj %}
+                <tr>
+                    <td>{{ song.day.date|date:"D, d.m.Y" }}</td>
+                    <td>{{ song.artist }}</td>
+                    <td>{{ song.title }}</td>
+                    <td>
+                        <a style="color: blue;" href="{{ song.link }}">YouTube <img width="51" height="28" src="/static/btn_youtube.png" /></a>
+                    </td>
+                    <td>{{ song.person.name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
         <!--Paginator-->
         <nav aria-label="Page navigation example">
@@ -74,8 +77,7 @@
                 <li class="page-item">
                     <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
                 </li>
-                {% endif %}
-                {% if page_obj.has_previous %}
+                {% endif %} {% if page_obj.has_previous %}
                 <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">{{page_obj.previous_page_number}}</a></li>
                 {% endif %}
                 <li class="page-item active">
@@ -83,8 +85,7 @@
                 </li>
                 {% if page_obj.has_next %}
                 <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">{{page_obj.next_page_number}}</a></li>
-                {% endif %}
-                {% if page_obj.has_next %}
+                {% endif %} {% if page_obj.has_next %}
                 <li class="page-item">
                     <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
                 </li>
@@ -96,6 +97,6 @@
             </ul>
         </nav>
         <!--/.Paginator-->
-        {% endblock %}
-    </body>
+    </div>
+{% endblock %}
 </html>
