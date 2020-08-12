@@ -15,6 +15,9 @@ class Person(models.Model):
     class Meta:
         ordering = ['name']
 
+    def get_absolute_url(self):
+        return reversed("person-detail", args=[self.pk])
+
     def __str__(self):
         return self.name
 
