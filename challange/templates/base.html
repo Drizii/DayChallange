@@ -12,7 +12,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/css/mdb.min.css" rel="stylesheet" />
         <style>
             body {
-                background-color: grey;
+                background-color: lightgrey;
                 position: relative;
                 display: block;
             }
@@ -20,7 +20,7 @@
                 content: "";
                 background: url("/static/pattern-backgr2.jpg");
                 background-repeat: repeat;
-                opacity: 0.05;
+                opacity: 0.12;
                 top: 0;
                 left: 0;
                 bottom: 0;
@@ -43,7 +43,7 @@
                 width: 100%;
                 padding:5px 0;
             }
-                    </style>
+        </style>
     </head>
     <body>
         <div id="page-container">
@@ -78,7 +78,7 @@
                 <footer class="page-footer font-small bg-dark" id="footer">
                     <!-- Copyright -->
                     <div class="footer-copyright text-center py-3">
-                        Testowa zawartość
+                        Made by Wojciech Kowalewicz pod przewodnictwem <a href="https://yetem.pl/">yetem.pl</a>
 
                     </div>
                     <!-- Copyright -->
@@ -88,9 +88,5 @@
                 <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
                 <script src="{% static 'js/script.js' %}"></script>
                 <!--/. Script to backlight a current path -->
-
     </body>
-
-    <!-- Footer -->
-    {% block content %} {% endblock %}
 </html>
