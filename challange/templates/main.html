@@ -25,6 +25,15 @@
                 text-align: center;
                 box-shadow: 0px 0px 5px 1px black;
             }
+            #link {
+                color: blue;
+                font-style: italic;
+                font-weight: bold;
+            }
+            .pagination{
+                margin-top: 50px;
+                margin-bottom: 60px;
+            }
         </style>
     <div class="container">
         <!-- search bar -->
@@ -58,9 +67,9 @@
                     <td>{{ song.artist }}</td>
                     <td>{{ song.title }}</td>
                     <td>
-                        <a style="color: blue;" href="{{ song.link }}">YouTube <img width="51" height="28" src="/static/btn_youtube.png" /></a>
+                        <a id="link" href="{{ song.link }}">YouTube <img width="51" height="28" src="/static/btn_youtube.png" /></a>
                     </td>
-                    <td>{{ song.person.name }}</td>
+                    <td><a id="link" href="{{obj.person.get_absolute_url}}">{{ song.person.name }}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
