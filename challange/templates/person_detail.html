@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Person view {% endblock %}
 {% block body %}
-<h1> no elko</h1>
-{% for day in days %}
-<p class="{% if day.active %}active"{% else %}inactive{% endif %}">{{ day.date }}</p>
-{% endfor %}
-
-<style>
-    .active{
-    background-color: green;
-    }
-    .inactive{
-    background-color: red;
-    }
-</style>
+<div class="container">
+    {% for day in days %}
+    <p class="{% if day.active %}active{% elif day.future %} future{% else %} inactive {% endif %}">{{day.date}} - {{ day.active }} - {{day.future}} </p>
+    {% endfor %}
+    <style>
+        .active{
+            background-color: green;
+        }
+        .inactive{
+            background-color:red;
+        }
+        .future{
+            background-color: grey;
+        }
+    </style>
 
 
 
