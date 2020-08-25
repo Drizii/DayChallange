@@ -1,5 +1,7 @@
 from datetime import date
 from django.db import models
+from django.urls import reverse
+from django.utils.text import slugify
 
 
 class Event(models.Model):
@@ -11,12 +13,18 @@ class Event(models.Model):
 
 class Person(models.Model):
     name = models.CharField(verbose_name="Imie i nazwisko", max_length=128)
+    slug = models.SlugField(verbose_name="Slug - generowany automatycznie, zostaw puste.", default='', null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(Person, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['name']
 
     def get_absolute_url(self):
-        return reversed("person-detail", args=[self.pk])
+        return reverse("person-detail", args=[self.slug])
 
     def __str__(self):
         return self.name

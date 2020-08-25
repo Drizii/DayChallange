@@ -33,11 +33,83 @@
     }
     .pagination{
         margin-top: 50px;
-    	margin-bottom: 60px;
+    }
+    #link {
+        color: blue;
+        font-style: italic;
+        font-weight: bold;
+    }
+    .rounded-circle{
+        height: 100px;
+        width:  100px;
+        background-color: black;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        margin-right: 29px;
+        margin-left: 29px;
+        float:left;
+        display:inline;
+        border: 2px solid white;
+    }
+    .rounded-circle p {
+        height: 100%;
+        font-size: 18px;
+        line-height: 1.25;
+        padding: 0;
+        text-align: center;
+        font-style: italic;
+        font-weight: bold;
+        -webkit-text-stroke: 0.55px black;
+    }
+    .text {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        margin: 0;
+        color: white;
+    }
+
+    .text .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: 100%;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    .text.tooltiptext::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent black transparent;
+    }
+
+    .text:hover .tooltiptext {
+        visibility: visible;
     }
 </style>
 
+
 <div class="container">
+    {% for count in days_table %}
+<div class="rounded-circle" style="{% if count.count <= 4 %}background-color: #228B22 {% elif count.count <= 6 %} background-color: #DAA520 {% elif count.count >= 8 %} background-color: #B22222 {% endif %}">
+    <div class="text">
+        <p><br>{{ count.count }}<br>piosenek</p>
+            <span class="tooltiptext">{{ count.day|date:"(l) d.m.Y" }}</span>
+    </div>
+</div>
+ {% endfor %}
     <table class="table table-bordered">
         {% for day in object_list %}
         <thead class="main-head">
@@ -58,8 +130,8 @@
             <tr class="row_obj">
                 <td>{{ obj.artist }}</td>
                 <td>{{ obj.title }}</td>
-                <td><a style="color: blue" href="{{obj.link}}">YouTube <img width="51" height="28" src="/static/btn_youtube.png"></a></td>
-                <td>{{ obj.person }}</td>
+                <td><a id="link" href="{{obj.link}}">YouTube <img width="51" height="28" src="/static/btn_youtube.png"></a></td>
+                <td><a id="link" href="{{obj.person.get_absolute_url}}">{{ obj.person }}</a></td>
             </tr>
             {% endfor %}
         </tbody>
