@@ -103,7 +103,7 @@
 
 <div class="container">
     {% for count in days_table %}
-<div class="rounded-circle" style="{% if count.count <= 4 %}background-color: #228B22 {% elif count.count <= 6 %} background-color: #DAA520 {% elif count.count >= 8 %} background-color: #B22222 {% endif %}">
+<div class="rounded-circle" style="{% if count.count <= 4 %}background-color: #228B22 {% elif count.count <= 7 %} background-color: #DAA520 {% elif count.count >= 8 %} background-color: #B22222 {% endif %}">
     <div class="text">
         <p><br>{{ count.count }}<br>piosenek</p>
             <span class="tooltiptext">{{ count.day|date:"(l) d.m.Y" }}</span>
