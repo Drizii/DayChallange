@@ -80,7 +80,6 @@ class PersonDetailView(DetailView):
                 "date": today,
                 "active": self.__is_active(today, days_list),
                 "future": self.__future_day(today),
-                "songs": self.object.song_set.all()
             }
             active_days.append(active_day)
         return active_days
@@ -90,7 +89,7 @@ class PersonDetailView(DetailView):
         days_list = []
         for song in person_songs:
             days_list.append(song.day.date)
-        return days_list  # tu jest lista dat
+        return days_list
 
     def __is_active(self, today, days_list):
         return today in days_list  ## zwraca z listy wszyskich dat, datę do days_list, ta data jest powiązana z istnijacym obiektem w bazie
@@ -98,8 +97,6 @@ class PersonDetailView(DetailView):
     def __future_day(self, today):
         now = date.today()
         return today > now
-
-
 
 
     # def __get_song(self, songs):

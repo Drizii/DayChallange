@@ -8,7 +8,7 @@
     {% for day in days %}
 
         <div class="col-my {% if day.active %}active{% elif day.future %} future{% else %} inactive {% endif %}"><br>
-            <span class="tooltiptext">{{ day.date|date:"d.m.Y" }} {{day.songs}}</span>
+            <span class="tooltiptext">{{ day.date|date:"d.m.Y" }}</span>
         </div>
 
     {% endfor %}

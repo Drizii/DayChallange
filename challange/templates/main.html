@@ -68,7 +68,7 @@
                     <td>
                         <a id="link" href="{{ song.link }}">YouTube <img width="51" height="28" src="/static/btn_youtube.png" /></a>
                     </td>
-                    <td><a id="link" href="{{obj.person.get_absolute_url}}">{{ song.person.name }}</a></td>
+                    <td><a id="link" href="{{song.person.get_absolute_url}}">{{ song.person.name }}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
